@@ -15,15 +15,14 @@ module tt_um_priority_encoder (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+    //Declaration:
+    wire [15:0] In;
+    
+    // All output pins must be assigned. If not used, assign to 0.
+    assign [15:0] In = {ui_in, uio_in};
 
-  // All output pins must be assigned. If not used, assign to 0.
- module tt_um_priority_encoder(
-  input  wire [15:0] input_signal,  
-    output reg  [7:0] encoded_output 
-);
-
-   wire [7:0] priority_index;
-
+    //Priority Encoder Implementation:
+    for 
     assign priority_index = (input_signal[15]) ? 8'd15 :
                             (input_signal[14]) ? 8'd14 :
                             (input_signal[13]) ? 8'd13 :
