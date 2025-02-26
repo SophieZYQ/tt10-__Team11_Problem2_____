@@ -22,14 +22,13 @@ from cocotb.triggers import Timer
 
 @cocotb.test()
 async def test_priority_encoder(dut):
-    """Test Priority Encoder with multiple cases"""
 
     test_cases = [
-        (0b00101010, 0b11110001, 13),  # First '1' at position 13
-        (0b00000000, 0b00000001, 0),   # First '1' at position 0
-        (0b00000000, 0b00000000, 240), # Special case: all zero
-        (0b10000000, 0b00000000, 15),  # First '1' at position 15
-        (0b00001111, 0b00000000, 7)    # First '1' at position 7
+        (0b00101010, 0b11110001, 13),  
+        (0b00000000, 0b00000001, 0),   
+        (0b00000000, 0b00000000, 240), 
+        (0b10000000, 0b00000000, 15),  
+        (0b00001111, 0b00000000, 7)    
     ]
 
     for a, b, expected in test_cases:
