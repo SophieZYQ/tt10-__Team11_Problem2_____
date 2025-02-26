@@ -38,3 +38,25 @@ async def test_project(dut):
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
+
+module tt_um_priority_encoder(
+  input  wire [15:0] input_signal,  
+    output reg  [7:0] encoded_output 
+);
+
+    integer i;
+    
+    always @(*) begin
+        encoded_output = 8'b11110000;  // Default case when all bits are 0
+        
+        for (i = 15; i >= 0; i = i - 1) begin
+            if (input_signal[i]) begin
+                encoded_output = i;  // Assign the highest priority bit index
+                break;
+            end
+        end
+    end
+
+endmodule
+
+
