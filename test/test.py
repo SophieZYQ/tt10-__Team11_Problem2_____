@@ -44,19 +44,25 @@ module tt_um_priority_encoder(
     output reg  [7:0] encoded_output 
 );
 
-    integer i;
-    
-    always @(*) begin
-        encoded_output = 8'b11110000;  
-        
-        for (i = 15; i >= 0; i = i - 1) begin
-            if (input_signal[i]) begin
-                encoded_output = i;  
-                break;
-            end
-        end
-    end
+   wire [7:0] priority_index;
+
+    assign priority_index = (input_signal[15]) ? 8'd15 :
+                            (input_signal[14]) ? 8'd14 :
+                            (input_signal[13]) ? 8'd13 :
+                            (input_signal[12]) ? 8'd12 :
+                            (input_signal[11]) ? 8'd11 :
+                            (input_signal[10]) ? 8'd10 :
+                            (input_signal[9])  ? 8'd9  :
+                            (input_signal[8])  ? 8'd8  :
+                            (input_signal[7])  ? 8'd7  :
+                            (input_signal[6])  ? 8'd6  :
+                            (input_signal[5])  ? 8'd5  :
+                            (input_signal[4])  ? 8'd4  :
+                            (input_signal[3])  ? 8'd3  :
+                            (input_signal[2])  ? 8'd2  :
+                            (input_signal[1])  ? 8'd1  :
+                            (input_signal[0])  ? 8'd0  : 8'b11110000; 
+    assign encoded_output = priority_index;
 
 endmodule
-
 
