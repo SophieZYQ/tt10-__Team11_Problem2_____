@@ -47,11 +47,11 @@ module tt_um_priority_encoder(
     integer i;
     
     always @(*) begin
-        encoded_output = 8'b11110000;  // Default case when all bits are 0
+        encoded_output = 8'b11110000;  
         
         for (i = 15; i >= 0; i = i - 1) begin
             if (input_signal[i]) begin
-                encoded_output = i;  // Assign the highest priority bit index
+                encoded_output = i;  
                 break;
             end
         end
