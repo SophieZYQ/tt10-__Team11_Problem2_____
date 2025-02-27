@@ -22,28 +22,26 @@ module tt_um_priority_encoder (
     assign [15:0] In = {ui_in, uio_in};
 
     //Priority Encoder Implementation:
-    for 
-    assign priority_index = (input_signal[15]) ? 8'd15 :
-                            (input_signal[14]) ? 8'd14 :
-                            (input_signal[13]) ? 8'd13 :
-                            (input_signal[12]) ? 8'd12 :
-                            (input_signal[11]) ? 8'd11 :
-                            (input_signal[10]) ? 8'd10 :
-                            (input_signal[9])  ? 8'd9  :
-                            (input_signal[8])  ? 8'd8  :
-                            (input_signal[7])  ? 8'd7  :
-                            (input_signal[6])  ? 8'd6  :
-                            (input_signal[5])  ? 8'd5  :
-                            (input_signal[4])  ? 8'd4  :
-                            (input_signal[3])  ? 8'd3  :
-                            (input_signal[2])  ? 8'd2  :
-                            (input_signal[1])  ? 8'd1  :
-                            (input_signal[0])  ? 8'd0  : 8'b11110000; 
-    assign encoded_output = priority_index;
+    assign priority_index = (In[15]) ? 8'd15 :
+                            (In[14]) ? 8'd14 :
+                            (In[13]) ? 8'd13 :
+                            (In[12]) ? 8'd12 :
+                            (In[11]) ? 8'd11 :
+                            (In[10]) ? 8'd10 :
+                            (In[9])  ? 8'd9  :
+                            (In[8])  ? 8'd8  :
+                            (In[7])  ? 8'd7  :
+                            (In[6])  ? 8'd6  :
+                            (In[5])  ? 8'd5  :
+                            (In[4])  ? 8'd4  :
+                            (In[3])  ? 8'd3  :
+                            (In[2])  ? 8'd2  :
+                            (In[1])  ? 8'd1  :
+                            (In[0])  ? 8'd0  : 8'b11110000; //Case where no 1 appears
+                
 
-endmodule
-
-
+  //assign output 
+  assign uo_out = priority_index
   assign uio_out = 0;
   assign uio_oe  = 0;
 
