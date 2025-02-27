@@ -27,8 +27,8 @@ async def test_priority_encoder(dut):
 
     # Set the input values you want to test
     test_cases = [
-        (0b0010101011110001, 13)
-        (0b0000000000000001, 0)
+        (0b0010101011110001, 13),
+        (0b0000000000000001, 0),
         (0b0000000000000000, 240)
     ]
 
