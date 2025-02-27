@@ -42,7 +42,7 @@ module tt_um_priority_encoder (
                 
 
   //assign output 
-  assign uo_out = C
+  assign uo_out = C;
   assign uio_out = 0;
   assign uio_oe  = 0;
 
