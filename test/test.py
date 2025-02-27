@@ -33,14 +33,14 @@ async def test_priority_encoder(dut):
     ]
 
     for input, output in test_cases:
-        dut.ui_in.val = input // 256
-        dut.uio_in.val = input % 256
+        dut.ui_in.value = input // 256
+        dut.uio_in.value = input % 256
         
         # Wait for one clock cycle to see the output value
         await ClockCycles(dut.clk, 1)
         
         # The following assersion is just an example of how to check the output values.
         # Change it to match the actual expected output of your module:
-        assert dut.uo_out.val == output
+        assert dut.uo_out.value == output
 
         
