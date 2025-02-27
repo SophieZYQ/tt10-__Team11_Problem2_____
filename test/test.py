@@ -34,7 +34,7 @@ async def test_priority_encoder(dut):
 
     for input, output in test_cases:
         dut.ui_in.val = input // 256
-        dut.ui_in.val = input % 256
+        dut.uio_in.val = input % 256
 
     # Wait for one clock cycle to see the output values
     await ClockCycles(dut.clk, 1)
