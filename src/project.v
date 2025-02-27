@@ -17,31 +17,32 @@ module tt_um_priority_encoder (
 );
     //Declaration:
     wire [15:0] In;
+    wire [7:0] C;
     
     // All output pins must be assigned. If not used, assign to 0.
     assign [15:0] In = {ui_in, uio_in};
 
     //Priority Encoder Implementation:
-    assign priority_index = (In[15]) ? 8'd15 :
-                            (In[14]) ? 8'd14 :
-                            (In[13]) ? 8'd13 :
-                            (In[12]) ? 8'd12 :
-                            (In[11]) ? 8'd11 :
-                            (In[10]) ? 8'd10 :
-                            (In[9])  ? 8'd9  :
-                            (In[8])  ? 8'd8  :
-                            (In[7])  ? 8'd7  :
-                            (In[6])  ? 8'd6  :
-                            (In[5])  ? 8'd5  :
-                            (In[4])  ? 8'd4  :
-                            (In[3])  ? 8'd3  :
-                            (In[2])  ? 8'd2  :
-                            (In[1])  ? 8'd1  :
-                            (In[0])  ? 8'd0  : 8'b11110000; //Case where no 1 appears
+    assign C = (In[15]) ? 8'd15 :
+               (In[14]) ? 8'd14 :
+               (In[13]) ? 8'd13 :
+               (In[12]) ? 8'd12 :
+               (In[11]) ? 8'd11 :
+               (In[10]) ? 8'd10 :
+               (In[9])  ? 8'd9  :
+               (In[8])  ? 8'd8  :
+               (In[7])  ? 8'd7  :
+               (In[6])  ? 8'd6  :
+               (In[5])  ? 8'd5  :
+               (In[4])  ? 8'd4  :
+               (In[3])  ? 8'd3  :
+               (In[2])  ? 8'd2  :
+               (In[1])  ? 8'd1  :
+               (In[0])  ? 8'd0  : 8'b11110000; //Case where no 1 appears
                 
 
   //assign output 
-  assign uo_out = priority_index
+  assign uo_out = C
   assign uio_out = 0;
   assign uio_oe  = 0;
 
