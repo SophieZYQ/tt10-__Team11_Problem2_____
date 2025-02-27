@@ -7,7 +7,7 @@ from cocotb.triggers import ClockCycles
 
 
 @cocotb.test()
-async def test_project(dut):
+async def test_priority_encoder(dut):
     dut._log.info("Start")
 
     # Set the clock period to 10 us (100 KHz)
@@ -26,4 +26,21 @@ async def test_project(dut):
     dut._log.info("Test project behavior")
 
     # Set the input values you want to test
-   
+    test_cases = [
+        (0010101011110001, 13)
+        (0000000000000001, 0)
+        (0000000000000000, 240)
+    ]
+
+    for input, output in test_cases:
+        dut.ui_in.val = input // 256
+        dut.ui_in.val = input % 256
+
+    # Wait for one clock cycle to see the output values
+    await ClockCycles(dut.clk, 1)
+
+    # The following assersion is just an example of how to check the output values.
+    # Change it to match the actual expected output of your module:
+    assert dut.uo_out.val == output
+
+        
