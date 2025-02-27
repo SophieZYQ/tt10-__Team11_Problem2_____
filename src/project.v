@@ -20,7 +20,7 @@ module tt_um_priority_encoder (
     wire [7:0] C;
     
     // All output pins must be assigned. If not used, assign to 0.
-    assign [15:0] In = {ui_in, uio_in};
+    assign In = {ui_in, uio_in};
 
     //Priority Encoder Implementation:
     assign C = (In[15]) ? 8'd15 :
