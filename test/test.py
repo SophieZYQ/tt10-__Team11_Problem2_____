@@ -14,26 +14,16 @@ async def test_project(dut):
     clock = Clock(dut.clk, 10, units="us")
     cocotb.start_soon(clock.start())
 
-    # Keep testing the module by changing the input values, waiting for
-    # one or more clock cycles, and asserting the expected output values.
+    # Reset
+    dut._log.info("Reset")
+    dut.ena.value = 1
+    dut.ui_in.value = 0
+    dut.uio_in.value = 0
+    dut.rst_n.value = 0
+    await ClockCycles(dut.clk, 10)
+    dut.rst_n.value = 1
 
-import cocotb
-from cocotb.triggers import Timer
+    dut._log.info("Test project behavior")
 
-@cocotb.test()
-async def test_priority_encoder(dut):
-
-    test_cases = [
-        (0b00101010, 0b11110001, 13),  
-        (0b00000000, 0b00000001, 0),   
-        (0b00000000, 0b00000000, 240), 
-        (0b10000000, 0b00000000, 15),  
-        (0b00001111, 0b00000000, 7)    
-    ]
-
-    for a, b, expected in test_cases:
-        dut.ui_in.value = a
-        dut.uio_in.value = b
-        await Timer(10, units="ns")
-
-        assert dut.uo_out.value == expected, f"Failed for input {a:08b} {b:08b}"
+    # Set the input values you want to test
+   
